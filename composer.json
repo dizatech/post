@@ -1,0 +1,31 @@
+{
+    "name": "dizatech/post",
+    "type": "library",
+    "description": "",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Foruzan Amiri Davani",
+            "email": "foruzan.amiridavani@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "7.1.*|7.2.*|7.3.*|7.4.*",
+        "laravel/framework": "7.*|8.*",
+        "plank/laravel-mediable": "5.*",
+        "dizatech/module-menu": "1.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Post\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Post\\PostServiceProvider"
+            ]
+        }
+    }
+}
