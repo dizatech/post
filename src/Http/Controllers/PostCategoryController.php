@@ -14,7 +14,7 @@ class PostCategoryController extends Controller
     {
         $category->category_type = $this->category_type;
 
-        return view('dizatechPost::post.postCategory.index', [
+        return view('dizatechPost::postCategory.index', [
             'categories'    => Category::where('category_type', $this->category_type)->get(),
             'categoryType'  => $this->category_type,
             'category'      => $category
@@ -26,7 +26,7 @@ class PostCategoryController extends Controller
         $category->category_type = $this->category_type;
         $postCategory = new Category();
 
-        return view("dizatechPost::post.postCategory.create", [
+        return view("dizatechPost::postCategory.create", [
             'category'      => $category,
             'categoryType'  => $this->category_type,
             'postCategory'  => $postCategory
@@ -55,7 +55,7 @@ class PostCategoryController extends Controller
             ->where('category_type', $this->category_type.'Category')
             ->get();
 
-        return view("dizatechPost::post.postCategory.edit", [
+        return view("dizatechPost::postCategory.edit", [
             'postCategory'  => $postCategory,
             'categoryType'  => $this->category_type,
             'category'      => $category
