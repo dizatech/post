@@ -17,7 +17,7 @@ class ArticleController extends PostController
         $articles = Post::where('post_type', $this->postType)->latest()->paginate(16);
         $title = "مقالات مفید";
 
-        return view('vendor/post/home/frontPost.indexArticles' , compact('articles', 'title'));
+        return view('vendor.post.home.indexArticles' , compact('articles', 'title'));
     }
 
     public function userShow($slug)
@@ -32,6 +32,6 @@ class ArticleController extends PostController
 
         $articles   = Post::where('post_type', $this->postType)->limit(3)->get();
 
-        return view('vendor/post/home/frontPost.showArticle' , compact('article', 'articles'));
+        return view('vendor.post.home.showArticle' , compact('article', 'articles'));
     }
 }

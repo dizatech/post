@@ -18,7 +18,7 @@ class NewsController extends PostController
         $news = Post::where('post_type', $this->postType)->latest()->paginate(16);
         $title = "اخبار";
 
-        return view('vendor/post/home/frontPost.indexNews', compact('news', 'title'));
+        return view('vendor.post.home.indexNews', compact('news', 'title'));
     }
 
     public function userShow($slug)
@@ -31,6 +31,6 @@ class NewsController extends PostController
         $news->hits = $news->hits + 1;
         $title = $news->title;
 
-        return view('vendor/post/home/frontPost.showNew', compact('news', 'title'));
+        return view('vendor.post.home.showNew', compact('news', 'title'));
     }
 }

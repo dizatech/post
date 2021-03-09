@@ -97,7 +97,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <x-attachment type="attachment" multiple="false" page="edit" name="video" label="ویدیو"
+        <x-attachment type="video" multiple="false" page="edit" name="video" label="ویدیو"
                       data="{{ $post->getMedia('video')->pluck('id') }}"></x-attachment>
 
     </div>

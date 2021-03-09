@@ -16,7 +16,7 @@ class VideoController extends PostController
     {
         $videos = Post::where('post_type', $this->postType)->latest()->paginate(12);
 
-        return view('vendor/post/home/frontPost.indexVideos', compact('videos'));
+        return view('vendor.post.home.indexVideos', compact('videos'));
     }
 
     public function userShow($slug)
@@ -32,6 +32,6 @@ class VideoController extends PostController
 
         $videos = Post::where('post_type', $this->postType)->latest()->limit(3)->get();
 
-        return view('vendor/post/home/frontPost.showVideo', compact('video', 'videos'));
+        return view('vendor.post.home.showVideo', compact('video', 'videos'));
     }
 }

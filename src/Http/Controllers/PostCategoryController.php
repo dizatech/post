@@ -14,7 +14,7 @@ class PostCategoryController extends Controller
     {
         $category->category_type = $this->category_type;
 
-        return view('vendor/post/home/postCategory.index', [
+        return view('vendor.post.home.postCategory.index', [
             'categories'    => Category::where('category_type', $this->category_type)->get(),
             'categoryType'  => $this->category_type,
             'category'      => $category
@@ -26,7 +26,7 @@ class PostCategoryController extends Controller
         $category->category_type = $this->category_type;
         $postCategory = new Category();
 
-        return view("vendor/post/home/postCategory.create", [
+        return view("vendor.post.home.postCategory.create", [
             'category'      => $category,
             'categoryType'  => $this->category_type,
             'postCategory'  => $postCategory
@@ -55,7 +55,7 @@ class PostCategoryController extends Controller
             ->where('category_type', $this->category_type.'Category')
             ->get();
 
-        return view("vendor/post/home/postCategory.edit", [
+        return view("vendor.post.home.postCategory.edit", [
             'postCategory'  => $postCategory,
             'categoryType'  => $this->category_type,
             'category'      => $category
