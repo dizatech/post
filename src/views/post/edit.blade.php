@@ -25,7 +25,7 @@
                             @method('PATCH')
                             @component('components.collapse-card', ['id' => $post->postTypeLabel.'-edit', 'show' => 'show' , 'title' => 'ویرایش ' .$post->postTypeLabel])
                                 @slot('body')
-                                    @component('mahamaxPost::components.post',[
+                                    @component('dizatechPost::components.post',[
                                         'categories' => $categories,
                                         'post'       => $post,
                                         'users'      => $users,
@@ -42,7 +42,6 @@
     @endslot
 
     @slot('script')
-        <script src="{{ asset('modules/js/mahamax-core.js') }}"></script>
         <script>
             $(".select2").select2({
                 theme: "bootstrap"

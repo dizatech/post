@@ -22,7 +22,7 @@
                             @csrf
                             @component('components.collapse-card', ['show' => 'show', 'id' => 'create_'.$post->postTypeLabel , 'title'=> $post->postTypeLabel .' جدید'])
                                 @slot('body')
-                                    @component('mahamaxPost::components.post',[
+                                    @component('dizatechPost::components.post',[
                                          'categories' => $categories,
                                          'post'       => $post,
                                          'users'      => $users,
@@ -40,7 +40,6 @@
     @endslot
 
     @slot('script')
-        <script src="{{ asset('modules/js/mahamax-core.js') }}"></script>
         <script>
             $(".select2").select2({
                 theme: "bootstrap"

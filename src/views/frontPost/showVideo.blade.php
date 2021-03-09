@@ -33,9 +33,12 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="py-3 px-4">
-                        <div class="video-starter" style="background-image:url(http://test.mahamax.com/wp-content/uploads/2020/04/nmr-850.jpg);">
-                            <img src="../../../images/home/play-transparent.png" class="play-btn">
-                        </div>
+                        @component('components.cards.video-player-with-cover', [
+                            'imageSource'   =>  $video->getMedia('featured_image')->count() > 0 ? $video->getMedia('featured_image')->first()->getUrl() : '',
+                            'imageAlt'      =>  $video->getMedia('featured_image')->count() > 0 ? $video->getMedia('featured_image')->first()->caption : '',
+                            'videoLink'     =>  '',
+                        ])
+                        @endcomponent
                     </div>
                 </div>
             </div>
@@ -60,8 +63,9 @@
                             <div class="col-lg-4 col-sm-6 col-12 mb-2">
                                 @component('components.cards.article-card', [
                                         'imageCover'    =>  true,
-                                        'imageSource'   =>  $video->getMedia('featured_image')->count() > 0 ? $video->getMedia('featured_image')->first()->findVariant('thumbnail')->getUrl() : '',
+                                        'imageSource'   =>  $video->getMedia('featured_image')->count() > 0 ? $video->getMedia('featured_image')->first()->getUrl() : '',
                                         'imageAlt'      =>  $video->getMedia('featured_image')->count() > 0 ? $video->getMedia('featured_image')->first()->caption : '',
+                                        'videoLink'     =>  '',
                                         'captionLink'   =>  route('video.user_show', ['slug' => $video->slug] ),
                                         'captionText'   =>  $video->title,
                                         'leadLink'      =>  route('video.user_show', ['slug' => $video->slug] ),

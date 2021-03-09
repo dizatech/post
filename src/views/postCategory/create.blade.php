@@ -22,7 +22,7 @@
                             @csrf
                             @component('components.collapse-card', ['show' => 'show', 'id' => 'create_'.$category->typeLabel , 'title'=> 'دسته‌بندی '.$category->typeLabel .' جدید'])
                                 @slot('body')
-                                    @component('mahamaxPost::components.postCategory',[
+                                    @component('dizatechPost::components.postCategory',[
                                         'postCategory'  => $postCategory,
                                         'categoryType'  => $categoryType
                                     ])
@@ -37,7 +37,5 @@
     @endslot
 
     @slot('script')
-        <script src="{{ asset('modules/js/mahamax-core.js') }}"></script>
-
     @endslot
 @endcomponent

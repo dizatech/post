@@ -78,6 +78,5 @@
     @endslot
 
     @slot('script')
-        <script src="{{ asset('modules/js/mahamax-post.js') }}"></script>
     @endslot
 @endcomponent

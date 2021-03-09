@@ -23,7 +23,7 @@
                             @method('PATCH')
                             @component('components.collapse-card', ['show' => 'show', 'id' => 'edit_' . $postCategory->type , 'title'=> 'ویرایش دسته‌بندی ' . $postCategory->type])
                                 @slot('body')
-                                    @component('mahamaxPost::components.postCategory',[
+                                    @component('dizatechPost::components.postCategory',[
                                         'postCategory'  => $postCategory,
                                         'categoryType'  => $categoryType
                                     ])
@@ -38,7 +38,5 @@
     @endslot
 
     @slot('script')
-        <script src="{{ asset('modules/js/mahamax-core.js') }}"></script>
-
     @endslot
 @endcomponent
