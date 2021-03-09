@@ -28,6 +28,6 @@ class NewsCategoryController extends PostCategoryController
 
         $title = $newsCategory->title;
 
-        return view('dizatechPost::frontPost.indexNews', compact('title', 'news'));
+        return view('vendor/post/home/frontPost.indexNews', compact('title', 'news'));
     }
 }

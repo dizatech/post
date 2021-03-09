@@ -27,6 +27,6 @@ class ArticleCategoryController extends PostCategoryController
 
         $title = $category->title;
 
-        return view('dizatechPost::frontPost.indexArticles', compact('title', 'articles'));
+        return view('vendor/post/home/frontPost.indexArticles', compact('title', 'articles'));
     }
 }
