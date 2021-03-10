@@ -36,7 +36,7 @@
                         @component('components.cards.video-player-with-cover', [
                             'imageSource'   =>  $video->getMedia('featured_image')->count() > 0 ? $video->getMedia('featured_image')->first()->getUrl() : '',
                             'imageAlt'      =>  $video->getMedia('featured_image')->count() > 0 ? $video->getMedia('featured_image')->first()->caption : '',
-                            'videoLink'     =>  '',
+                            'videoLink'     =>  $video->getMedia('video')->count() > 0 ? $video->getMedia('video')->first()->getUrl() : '',
                         ])
                         @endcomponent
                     </div>
@@ -65,7 +65,7 @@
                                         'imageCover'    =>  true,
                                         'imageSource'   =>  $video->getMedia('featured_image')->count() > 0 ? $video->getMedia('featured_image')->first()->getUrl() : '',
                                         'imageAlt'      =>  $video->getMedia('featured_image')->count() > 0 ? $video->getMedia('featured_image')->first()->caption : '',
-                                        'videoLink'     =>  '',
+                                        'videoLink'     =>  $video->getMedia('video')->count() > 0 ? $video->getMedia('video')->first()->getUrl() : '',
                                         'captionLink'   =>  route('video.user_show', ['slug' => $video->slug] ),
                                         'captionText'   =>  $video->title,
                                         'leadLink'      =>  route('video.user_show', ['slug' => $video->slug] ),
