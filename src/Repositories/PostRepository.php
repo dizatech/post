@@ -8,6 +8,6 @@ class PostRepository
 {
     public function all($postType)
     {
-        return Post::query()->where('post_type', $postType)->paginate();
+        return Post::query()->where('post_type', $postType)->paginate(16);
     }
 }

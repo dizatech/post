@@ -66,7 +66,7 @@
                                 <div class="article_container page-content px-0 text-justify">
                                     <div class="article_text main-text">
                                         <h2></h2>
-                                            {!! $news->description !!}
+                                        {!! $news->description !!}
                                     </div>
                                 </div>
                             </div>
