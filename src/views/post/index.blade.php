@@ -25,7 +25,7 @@
                                             <div class="form-group">
                                                 <label for="text-name-input">نام {{$post->postTypeLabel }}</label>
                                                 <input type="text" class="form-control" id="text-name-input"
-                                                       placeholder={{$post->postTypeLabel}}"نام".>
+                                                       placeholder={{$post->postTypeLabel}}"نام" .>
                                             </div>
                                             <button type="submit" class="btn btn-primary float-left">جستجو</button>
                                         </form>
@@ -33,7 +33,7 @@
                                 @endcomponent
                                 <div class="mt-4">
                                     <a href="{{route($postType.'.create')}}" type="button" class="btn btn-primary"><i
-                                            class="fa fa-plus"></i>{{$post->postTypeLabel}} جدید</a>
+                                                class="fa fa-plus"></i>{{$post->postTypeLabel}} جدید</a>
                                 </div>
                                 @component('components.table')
                                     @slot('thead')
@@ -57,18 +57,23 @@
                                                 <td>{{jdate($post->published_at)->format('H:i:s - y/m/d')}}</td>
                                                 <td>{{implode(',',$post->categories->pluck('title')->toArray())}}</td>
                                                 <td>
-                                                    <a href="{{route($postType.'.edit', $post->id)}}" type="button" class="btn btn-sm btn-primary">ویرایش</a>
-                                                    <a href="" class="btn btn-sm btn-danger delete_post_ajax" data-post="{{$post->id}}">حذف</a>
+                                                    <a href="{{route($postType.'.edit', $post->id)}}" type="button"
+                                                       class="btn btn-sm btn-primary">ویرایش</a>
+                                                    <a href="" class="btn btn-sm btn-danger delete_post_ajax"
+                                                       data-post="{{$post->id}}">حذف</a>
 
                                                 </td>
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="7" style="text-align: center">موردی برای نمایش وجود ندارد.</td>
+                                                <td colspan="7" style="text-align: center">موردی برای نمایش وجود
+                                                    ندارد.
+                                                </td>
                                             </tr>
                                         @endforelse
                                     @endslot
                                 @endcomponent
+                                {{$posts->links()}}
                             @endslot
                         @endcomponent
                     @endslot
