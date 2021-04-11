@@ -22,6 +22,8 @@ class CreatePostsTable extends Migration
             $table->enum('post_type', ['article', 'video', 'news']);
             $table->text('lead')->nullable();
             $table->text('description')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->text('meta_description')->nullable();
             $table->smallInteger('study_time')->unsigned()->nullable();
             $table->dateTime('published_at');
             $table->bigInteger('creator_id');
