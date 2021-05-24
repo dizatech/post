@@ -25,7 +25,7 @@
                             @method('PATCH')
                             @component('components.collapse-card', ['id' => $post->postTypeLabel.'-edit', 'show' => 'show' , 'title' => 'ویرایش ' .$post->postTypeLabel])
                                 @slot('body')
-                                    @component('dizatechPost::components.post',[
+                                    @component('vendor.post.components.post',[
                                         'categories' => $categories,
                                         'post'       => $post,
                                         'users'      => $users,

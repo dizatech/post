@@ -19,7 +19,7 @@ class PostController extends Controller
     {
         $post->post_type = $this->postType;
 
-        return view("dizatechPost::post.index",[
+        return view("vendor.post.panel.index",[
             'posts'       => PostFacade::all($this->postType),
             'postType'    => $this->postType,
             'post'        => $post
@@ -35,7 +35,7 @@ class PostController extends Controller
         $post  = new Post();
         $post->post_type = $this->postType;
 
-        return view("dizatechPost::post.create", [
+        return view("vendor.post.panel.create", [
             'post'          => $post,
             'categories'    => $categories,
             'postType'      => $this->postType,
@@ -78,7 +78,7 @@ class PostController extends Controller
         $post->featured_image = $post->getMedia('featured_image')->pluck('id');
         $post->video = $post->getMedia('video')->pluck('id');
 
-        return view("dizatechPost::post.edit",[
+        return view("vendor.post.panel.edit",[
             'post'          => $post,
             'categories'    => $categories,
             'postType'      => $this->postType,

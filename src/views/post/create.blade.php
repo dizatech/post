@@ -22,7 +22,7 @@
                             @csrf
                             @component('components.collapse-card', ['show' => 'show', 'id' => 'create_'.$post->postTypeLabel , 'title'=> $post->postTypeLabel .' جدید'])
                                 @slot('body')
-                                    @component('dizatechPost::components.post',[
+                                    @component('vendor.post.components.post',[
                                          'categories' => $categories,
                                          'post'       => $post,
                                          'users'      => $users,
