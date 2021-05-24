@@ -91,8 +91,16 @@
 
 <div class="row">
     <div class="col-md-12">
-        <x-attachment type="image" multiple="false" page="edit" name="featured_image" label="تصویر شاخص"
-                      data="{{ $post->getMedia('featured_image')->pluck('id') }}"></x-attachment>
+        <x-attachment type="image"
+                      multiple="false"
+                      page="edit"
+                      name="featured_image"
+                      label="تصویر شاخص"
+                      tooltip-title="حداقل عرض ۷۰۰ پیکسل، حداقل ارتفاع ۴۰۰ پیکسل و نسبت عرض به ارتفاع ۱.۶۵ باشد. بعنوان مثال، عرض ۷۲۶ پیکسل و ارتفاع ۴۴۰ پیکسل."
+                      data="{{ $post->getMedia('featured_image')->pluck('id') }}"
+                      validation="['mimes:png,jpg,jpeg', 'dimensions:ratio=1.65,min_width=700,min_height=400']"
+        >
+        </x-attachment>
     </div>
 </div>
 <div class="row">

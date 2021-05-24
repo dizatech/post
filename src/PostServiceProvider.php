@@ -36,6 +36,12 @@ class PostServiceProvider extends ServiceProvider
                 __DIR__.'/views/frontPost/showArticle.blade.php' =>resource_path('views/vendor/post/home/showArticle.blade.php'),
                 __DIR__.'/views/frontPost/showNew.blade.php' =>resource_path('views/vendor/post/home/showNew.blade.php'),
                 __DIR__.'/views/frontPost/showVideo.blade.php' =>resource_path('views/vendor/post/home/showVideo.blade.php'),
+
+                __DIR__.'/views/post/create.blade.php' =>resource_path('views/vendor/post/panel/create.blade.php'),
+                __DIR__.'/views/post/edit.blade.php' =>resource_path('views/vendor/post/panel/edit.blade.php'),
+                __DIR__.'/views/post/index.blade.php' =>resource_path('views/vendor/post/panel/index.blade.php'),
+
+                __DIR__.'/views/components/post.blade.php' =>resource_path('views/vendor/post/components/post.blade.php'),
          ], 'dizatechPost');
 
          \ModuleMenu::init('post');
