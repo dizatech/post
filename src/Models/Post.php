@@ -12,7 +12,7 @@ use Plank\Mediable\Mediable;
 class Post extends Model
 {
     use HasFactory, SoftDeletes, Mediable, Categorizable;
-    protected $fillable = ['title', 'sub_title', 'post_type', 'creator_id', 'study_time', 'lead', 'description'];
+    protected $fillable = ['title', 'sub_title', 'post_type','publish_status', 'creator_id', 'study_time', 'lead', 'description'];
 
     public function creator()
     {
@@ -45,6 +45,25 @@ class Post extends Model
                 break;
         }
 
+        return $label;
+    }
+    public function getPublishStatusLabelAttribute()
+    {
+        switch ($this->publish_status) {
+
+            case 'draft':
+                $label = ' پیش‌نویس';
+                break;
+            case 'published':
+                $label = ' منتشر شده';
+                break;
+            case 'private':
+                $label = 'خصوصی';
+                break;
+
+            default:
+                $label = 'نامشخص';
+        }
         return $label;
     }
 }

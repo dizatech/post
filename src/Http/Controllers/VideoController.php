@@ -2,6 +2,7 @@
 
 namespace Modules\Post\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Modules\Post\Models\Post;
 
 class VideoController extends PostController
@@ -14,14 +15,23 @@ class VideoController extends PostController
 
     public function userIndex()
     {
-        $videos = Post::where('post_type', $this->postType)->latest()->paginate(12);
+        $videos = Post::where('post_type', $this->postType);
+        if( Auth::guest() || !Auth::user()->is_admin ){
+            $videos = $videos->wherePublishStatus('published');
+        }
+        $videos = $videos->latest()->paginate(12);
+        $title = 'ویدیو';
 
-        return view('vendor.post.home.indexVideos', compact('videos'));
+        return view('vendor.post.home.indexVideos', compact('videos', 'title'));
     }
+
 
     public function userShow($slug)
     {
         $video  = Post::where('slug', $slug)->firstOrFail();
+        if( Auth::guest() || !Auth::user()->is_admin ){
+            abort(404);
+        }
 
         Post::query()->where('slug', $slug)->update([
             'hits'  => $video->hits + 1

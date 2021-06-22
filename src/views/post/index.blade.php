@@ -43,6 +43,7 @@
                                             <th>زیرعنوان</th>
                                             <th>نویسنده</th>
                                             <th>تاریخ انتشار</th>
+                                            <th>وضعیت انتشار</th>
                                             <th>دسته‌بندی</th>
                                             <th>عملیات</th>
                                         </tr>
@@ -54,7 +55,8 @@
                                                 <td>{{$post->title}}</td>
                                                 <td>{{$post->sub_title}}</td>
                                                 <td>{{$post->creator->full_name}}</td>
-                                                <td>{{jdate($post->published_at)->format('H:i:s - y/m/d')}}</td>
+                                                <td>{{digitsToEastern(jdate($post->published_at)->format('H:i:s Y-m-d'))}}</td>
+                                                <td>{{$post->publishStatusLabel}}</td>
                                                 <td>{{implode(',',$post->categories->pluck('title')->toArray())}}</td>
                                                 <td>
                                                     <a href="{{route($postType.'.edit', $post->id)}}" type="button"

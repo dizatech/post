@@ -51,7 +51,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="form-group">
             <label for="creator_id"><strong>نویسنده</strong></label>
             <select type="text" class="form-control select2" id="creator_id" name="creator_id"
@@ -66,7 +66,7 @@
             </select>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="form-group">
             <label for="published_at"><strong>تاریخ انتشار</strong></label>
             <div class="input-group datepicker" data-has-time>
@@ -85,6 +85,33 @@
                     <strong></strong>
                 </span>
             </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group has-primary">
+            <label for="publish_status"><strong>وضعیت انتشار</strong></label>
+            <select name="publish_status" id="publish_status"
+                    class="form-control select2 @error('publish_status') is-invalid @enderror">
+
+                <option
+                        value="draft" {{old('publish_status', $post->publish_status) == 'draft' ? 'selected' : ''}}>
+                    پیش‌نویس
+                </option>
+                <option
+                        value="published" {{old('publish_status', $post->publish_status) == 'published' ? 'selected' : ''}}>
+                    منتشر شده
+                </option>
+                <option
+                        value="private" {{old('publish_status', $post->publish_status) == 'private' ? 'selected' : ''}}>
+                    خصوصی
+                </option>
+            </select>
+
+            @error('publish_status')
+            <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+            @enderror
         </div>
     </div>
 </div>

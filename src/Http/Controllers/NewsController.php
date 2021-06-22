@@ -3,6 +3,7 @@
 namespace Modules\Post\Http\Controllers;
 
 
+use Illuminate\Support\Facades\Auth;
 use Modules\Post\Models\Post;
 
 class NewsController extends PostController
@@ -15,7 +16,11 @@ class NewsController extends PostController
 
     public function userIndex()
     {
-        $news = Post::where('post_type', $this->postType)->latest()->paginate(16);
+        $news = Post::where('post_type', $this->postType);
+        if( Auth::guest() || !Auth::user()->is_admin ){
+            $news = $news->wherePublishStatus('published');
+        }
+        $news = $news->latest()->paginate(16);
         $title = "اخبار";
 
         return view('vendor.post.home.indexNews', compact('news', 'title'));
@@ -24,6 +29,9 @@ class NewsController extends PostController
     public function userShow($slug)
     {
         $news = Post::where('slug', $slug)->firstOrFail();
+        if( Auth::guest() || !Auth::user()->is_admin ){
+            abort(404);
+        }
 
         Post::query()->where('slug', $slug)->update([
             'hits'  => $news->hits + 1
