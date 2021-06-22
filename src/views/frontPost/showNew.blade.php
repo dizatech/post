@@ -1,4 +1,4 @@
-@component('home.layouts.component', ['title' => 'خبر'])
+@component('home.layouts.component', ['title' => ($news->meta_title != '') ? $news->meta_title : $news->title , 'description' => ($news->meta_description != '') ? $news->meta_description : $news->description])
 
     @slot('style')
     @endslot

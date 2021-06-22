@@ -140,6 +140,24 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="meta_title"><strong>عنوان سئو</strong></label>
+            <input type="text" id="meta_title" name="meta_title"
+                   class="form-control" value="{{old('meta_title')}}"
+                   @error('meta_title') is-invalid @enderror>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="meta_description"><strong>توضیحات سئو</strong></label>
+            <textarea id="meta_description" name="meta_description" class="form-control">{{old('meta_description')}}</textarea>
+        </div>
+    </div>
+</div>
 
 <div class="py-3">
     <button type="submit" class="btn btn-success">ثبت</button>

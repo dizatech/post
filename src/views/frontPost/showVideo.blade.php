@@ -1,4 +1,4 @@
-@component('home.layouts.component', ['title' => 'ویدیو'])
+@component('home.layouts.component', ['title' => ($video->meta_title != '') ? $video->meta_title : $video->title , 'description' => ($video->meta_description != '') ? $video->meta_description : $video->description])
 
     @slot('style')
     @endslot

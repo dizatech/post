@@ -1,4 +1,4 @@
-@component('home.layouts.component', ['title' => 'مقاله'])
+@component('home.layouts.component', ['title' => ($article->meta_title != '') ? $article->meta_title : $article->title , 'description' => ($article->meta_description != '') ? $article->meta_description : $article->description])
 
     @slot('style')
     @endslot
