@@ -4,6 +4,7 @@ namespace Modules\Post\Http\Controllers;
 
 
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Modules\Post\Models\Post;
 
 class NewsCategoryController extends PostCategoryController
@@ -21,10 +22,13 @@ class NewsCategoryController extends PostCategoryController
             ->where('slug', $slug)->firstOrFail();
 
         \DB::enableQueryLog();
-        $news = Post::where('post_type', $this->post_type)
-            ->whereHas('categories', function( $query ) use ( $newsCategory ){
-                $query->where('category_id', $newsCategory->id);
-            })->latest()->paginate();
+        $news = Post::where('post_type', $this->post_type);
+        if( Auth::guest() || !Auth::user()->is_admin ){
+            $news = $news->wherePostStatus('publish');
+        };
+        $news = $news->whereHas('categories', function( $query ) use ( $newsCategory ){
+            $query->where('category_id', $newsCategory->id);
+        })->latest()->paginate();
 
         $title = $newsCategory->title;
 
