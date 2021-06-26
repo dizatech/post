@@ -28,7 +28,7 @@ class ArticleController extends PostController
     public function userShow($slug)
     {
         $article    = Post::where('slug', $slug)->firstOrFail();
-        if( Auth::guest() || !Auth::user()->is_admin ){
+        if( $article->publish_status != 'published' && (Auth::guest() || !Auth::user()->is_admin) ){
             abort(404);
         }
 

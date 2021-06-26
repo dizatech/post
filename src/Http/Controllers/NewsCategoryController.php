@@ -24,7 +24,7 @@ class NewsCategoryController extends PostCategoryController
         \DB::enableQueryLog();
         $news = Post::where('post_type', $this->post_type);
         if( Auth::guest() || !Auth::user()->is_admin ){
-            $news = $news->wherePostStatus('publish');
+            $news = $news->wherePostStatus('published');
         };
         $news = $news->whereHas('categories', function( $query ) use ( $newsCategory ){
             $query->where('category_id', $newsCategory->id);

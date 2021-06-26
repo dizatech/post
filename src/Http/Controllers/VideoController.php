@@ -25,11 +25,10 @@ class VideoController extends PostController
         return view('vendor.post.home.indexVideos', compact('videos', 'title'));
     }
 
-
     public function userShow($slug)
     {
         $video  = Post::where('slug', $slug)->firstOrFail();
-        if( Auth::guest() || !Auth::user()->is_admin ){
+        if( $video->publish_status != 'published' && (Auth::guest() || !Auth::user()->is_admin) ){
             abort(404);
         }
 

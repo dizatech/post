@@ -23,12 +23,12 @@ class ArticleCategoryController extends PostCategoryController
 
         $articles = Post::where('post_type', $this->post_type);
         if( Auth::guest() || !Auth::user()->is_admin ){
-            $articles = $articles->wherePostStatus('publish');
+            $articles = $articles->wherePostStatus('published');
         };
 
         $articles = $articles->whereHas('categories', function( $query ) use ( $category ){
-                $query->where('category_id', $category->id);
-            })->latest()->paginate();
+            $query->where('category_id', $category->id);
+        })->latest()->paginate();
 
         $title = $category->title;
 

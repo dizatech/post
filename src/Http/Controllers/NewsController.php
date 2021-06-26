@@ -17,9 +17,11 @@ class NewsController extends PostController
     public function userIndex()
     {
         $news = Post::where('post_type', $this->postType);
+
         if( Auth::guest() || !Auth::user()->is_admin ){
             $news = $news->wherePublishStatus('published');
         }
+
         $news = $news->latest()->paginate(16);
         $title = "اخبار";
 
