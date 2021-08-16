@@ -31,7 +31,7 @@ class NewsController extends PostController
     public function userShow($slug)
     {
         $news = Post::where('slug', $slug)->firstOrFail();
-        if( Auth::guest() || !Auth::user()->is_admin ){
+        if( ( Auth::guest() || !Auth::user()->is_admin ) && $news->publish_status != 'published' ){
             abort(404);
         }
 
