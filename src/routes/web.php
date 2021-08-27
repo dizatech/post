@@ -7,6 +7,9 @@ Route::group([
     'prefix'     => 'panel',
     'middleware' => ['web', 'auth', 'verified']
 ], function () {
+    Route::resource('page', 'PageController')->parameters([
+        'page'          => 'post'
+    ]);
     Route::resource('article', 'ArticleController')->parameters([
         'article'      => 'post'
     ]);
@@ -33,6 +36,8 @@ Route::group([
     'namespace' => 'Modules\Post\Http\Controllers',
     'middleware' => ['web']
 ], function () {
+    Route::get('/page/{slug}', 'PageController@userShow')->name('page.user_show');
+
     Route::get('/اخبار', 'NewsController@userIndex')->name('news.user_index');
     Route::get('/اخبار' . '/{slug}', 'NewsController@userShow')->name('news.user_show');
     Route::get('اخبار/دسته-بندی/' . '{slug}', 'NewsCategoryController@userShow')->name('news_category.user_show');

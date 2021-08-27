@@ -34,6 +34,7 @@ class PostServiceProvider extends ServiceProvider
                 __DIR__.'/views/frontPost/indexNews.blade.php' =>resource_path('views/vendor/post/home/indexNews.blade.php'),
                 __DIR__.'/views/frontPost/indexVideos.blade.php' =>resource_path('views/vendor/post/home/indexVideos.blade.php'),
                 __DIR__.'/views/frontPost/showArticle.blade.php' =>resource_path('views/vendor/post/home/showArticle.blade.php'),
+                __DIR__.'/views/frontPost/showPage.blade.php' =>resource_path('views/vendor/post/home/showPage.blade.php'),
                 __DIR__.'/views/frontPost/showNew.blade.php' =>resource_path('views/vendor/post/home/showNew.blade.php'),
                 __DIR__.'/views/frontPost/showVideo.blade.php' =>resource_path('views/vendor/post/home/showVideo.blade.php'),
 

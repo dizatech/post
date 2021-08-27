@@ -20,6 +20,7 @@ class PostRolePermissionsSeeder extends Seeder
         $permissions = DB::table('permissions')->whereIn('name', [
             'mahamax_posts',
             'mahamax_posts_category',
+            'mahamax_pages',
             'mahamax_news',
             'mahamax_news_category',
             'mahamax_videos',

@@ -21,6 +21,9 @@ class Post extends Model
 
     public function getPostTypeLabelAttribute(){
         switch( $this->post_type ){
+            case 'page':
+                $label = 'برگه';
+                break;
             case 'news':
                 $label = 'خبر';
                 break;

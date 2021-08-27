@@ -24,6 +24,15 @@ class PostPermissionsSeeder extends Seeder
             ]);
         }
 
+        if (DB::table('permissions')->where('name','mahamax_pages')->count() == 0){
+            DB::table('permissions')->insert([
+                'name' => 'mahamax_pages',
+                'display_name' => 'لیست برگه‌ها',
+                'description' => 'دسترسی به لیست برگه‌ها',
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString()
+            ]);
+        }
         if (DB::table('permissions')->where('name','mahamax_news')->count() == 0){
             DB::table('permissions')->insert([
                 'name' => 'mahamax_news',
