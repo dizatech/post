@@ -43,6 +43,8 @@ class PostServiceProvider extends ServiceProvider
                 __DIR__.'/views/post/index.blade.php' =>resource_path('views/vendor/post/panel/index.blade.php'),
 
                 __DIR__.'/views/components/post.blade.php' =>resource_path('views/vendor/post/components/post.blade.php'),
+
+                __DIR__.'/assets/js/' => resource_path('js/vendor/dizatech-post'),
          ], 'dizatechPost');
 
          \ModuleMenu::init('post');
