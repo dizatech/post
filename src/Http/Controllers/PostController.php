@@ -118,6 +118,10 @@ class PostController extends Controller
 
     public function PostDeleteAjax(Post $post)
     {
+        if( $post->post_type == 'page' ){
+            return abort(403);
+        }
+
         $post->delete();
         return response()->json(['status' =>  200]);
     }
