@@ -18,7 +18,8 @@ class PostRepository
         ->where('publish_status', 'published')
         ->whereHas('categories', function(Builder $query) use ($category_id){
             $query->where('category_id', $category_id);
-        });
+        })
+        ->orderBy('created_at', 'desc');
         if( $count ){
             return $query->take($count)->get();
         }
