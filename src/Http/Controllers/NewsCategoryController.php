@@ -18,7 +18,7 @@ class NewsCategoryController extends PostCategoryController
 
     public function userShow($slug)
     {
-        $newsCategory = Category::where('category_type', $this->category_type)
+        $category = Category::where('category_type', $this->category_type)
             ->where('slug', $slug)->firstOrFail();
 
         \DB::enableQueryLog();
@@ -26,12 +26,12 @@ class NewsCategoryController extends PostCategoryController
         if( Auth::guest() || !Auth::user()->is_admin ){
             $news = $news->wherePublishStatus('published');
         };
-        $news = $news->whereHas('categories', function( $query ) use ( $newsCategory ){
-            $query->where('category_id', $newsCategory->id);
+        $news = $news->whereHas('categories', function( $query ) use ( $category ){
+            $query->where('category_id', $category->id);
         })->latest()->paginate();
 
-        $title = $newsCategory->title;
+        $title = $category->title;
 
-        return view('vendor.post.home.indexNews', compact('title', 'news'));
+        return view('vendor.post.home.indexNews', compact('title', 'news', 'category'));
     }
 }
