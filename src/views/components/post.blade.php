@@ -172,8 +172,7 @@
         <div class="form-group">
             <label for="meta_title"><strong>عنوان سئو</strong></label>
             <input type="text" id="meta_title" name="meta_title"
-                   class="form-control" value="{{old('meta_title')}}"
-                   @error('meta_title') is-invalid @enderror>
+                   class="form-control" value="{{old('meta_title', $post->meta_title)}}">
         </div>
     </div>
 </div>
@@ -181,7 +180,8 @@
     <div class="col-md-12">
         <div class="form-group">
             <label for="meta_description"><strong>توضیحات سئو</strong></label>
-            <textarea id="meta_description" name="meta_description" class="form-control">{{old('meta_description')}}</textarea>
+            <textarea id="meta_description" name="meta_description" class="form-control">
+                {{ old('meta_description' , $post->description) }}</textarea>
         </div>
     </div>
 </div>

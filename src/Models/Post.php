@@ -12,7 +12,7 @@ use Plank\Mediable\Mediable;
 class Post extends Model
 {
     use HasFactory, SoftDeletes, Mediable, Categorizable;
-    protected $fillable = ['title', 'sub_title', 'post_type','publish_status', 'creator_id', 'study_time', 'lead', 'description'];
+    protected $fillable = ['title', 'sub_title', 'post_type','publish_status', 'creator_id', 'study_time', 'lead', 'description', 'meta_title', 'meta_description'];
 
     public function creator()
     {
@@ -21,9 +21,6 @@ class Post extends Model
 
     public function getPostTypeLabelAttribute(){
         switch( $this->post_type ){
-            case 'page':
-                $label = 'برگه';
-                break;
             case 'news':
                 $label = 'خبر';
                 break;
