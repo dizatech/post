@@ -101,6 +101,13 @@ class PostController extends Controller
             }
         }
         $post->syncMedia($request->video, 'video');
+        if($request->has('video')) {
+            foreach ($request->video as $index => $video) {
+                Media::query()->whereId($video)->update([
+                    'caption' => $request->video_caption[$index] ?? null
+                ]);
+            }
+        }
 
         $post->categories()->sync($request->categories);
 

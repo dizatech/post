@@ -131,10 +131,17 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
-        <x-attachment type="video" multiple="false" page="edit" name="video" label="ویدیو"
-                      data="{{ $post->getMedia('video')->pluck('id') }}"></x-attachment>
-
+    <div class="row">
+        <div class="col-md-12">
+            <x-attachment
+                type="video"
+                multiple="true"
+                page="edit"
+                name="video"
+                label="ویدیوها"
+                data="{{ $post->getMedia('video')->pluck('id') }}">
+            </x-attachment>
+        </div>
     </div>
 </div>
 <div class="row">
@@ -172,7 +179,8 @@
         <div class="form-group">
             <label for="meta_title"><strong>عنوان سئو</strong></label>
             <input type="text" id="meta_title" name="meta_title"
-                   class="form-control" value="{{old('meta_title', $post->meta_title)}}">
+                class="form-control"
+                value="{{old('meta_title', $post->meta_title)}}">
         </div>
     </div>
 </div>
@@ -180,8 +188,13 @@
     <div class="col-md-12">
         <div class="form-group">
             <label for="meta_description"><strong>توضیحات سئو</strong></label>
+<<<<<<< HEAD
             <textarea id="meta_description" name="meta_description" class="form-control">
                 {{ old('meta_description' , $post->meta_description) }}</textarea>
+=======
+            <textarea id="meta_description" name="meta_description"
+                class="form-control">{{old('meta_description', $post->meta_description)}}</textarea>
+>>>>>>> 0d57e59d9702e2f723413ddb354cde39d192d679
         </div>
     </div>
 </div>

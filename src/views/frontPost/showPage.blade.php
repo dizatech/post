@@ -36,6 +36,18 @@
                             <!--Article Text-->
                             <div class="news-text">
                                 {!! $page->description !!}
+
+                                @if( $page->getMedia('video')->count() > 0 )
+                                    @foreach( $page->getMedia('video') as $video )
+                                    <div class="post_video_container">
+                                        <h3 class="text-primary">{{ $video->caption }}</h3>
+
+                                        <div class="text-center">
+                                            <video controls><source src="{{ $video->getUrl() }}"></video>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
