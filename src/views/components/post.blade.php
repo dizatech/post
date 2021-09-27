@@ -181,7 +181,7 @@
         <div class="form-group">
             <label for="meta_description"><strong>توضیحات سئو</strong></label>
             <textarea id="meta_description" name="meta_description" class="form-control">
-                {{ old('meta_description' , $post->description) }}</textarea>
+                {{ old('meta_description' , $post->meta_description) }}</textarea>
         </div>
     </div>
 </div>
