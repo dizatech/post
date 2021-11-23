@@ -25,18 +25,18 @@ class ArticleController extends PostController
         return view('vendor.post.home.indexArticles' , compact('articles', 'title'));
     }
 
-    public function userShow($slug)
+    public function userShow($article)
     {
-        $article    = Post::where('slug', $slug)->firstOrFail();
+        if( !$article instanceof Post ){
+            $article = Post::whereSlug($article)->firstOrFail();
+        }
+
         if( $article->publish_status != 'published' && (Auth::guest() || !Auth::user()->is_admin) ){
             abort(404);
         }
 
-        Post::query()->where('slug', $slug)->update([
-            'hits' => $article->hits + 1
-        ]);
-
         $article->hits    = $article->hits + 1;
+        $article->save();
 
         $articles   = Post::where('post_type', $this->postType)->limit(3)->get();
 

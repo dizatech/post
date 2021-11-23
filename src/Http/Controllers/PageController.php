@@ -24,14 +24,14 @@ class PageController extends PostController
         return abort(403);
     }
 
-    public function userShow($slug)
+    public function userShow($page)
     {
-        $page = Post::where('slug', $slug)->firstOrFail();
+        if( !$page instanceof Post ){
+            $page = Post::whereSlug($page)->firstOrFail();
+        }
 
-        Post::query()->where('slug', $slug)->update([
-            'hits'  => $page->hits + 1
-        ]);
         $page->hits = $page->hits + 1;
+        $page->save();
         $title = $page->title;
 
         return view('vendor.post.home.showPage', compact('page', 'title'));

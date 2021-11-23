@@ -25,19 +25,17 @@ class VideoController extends PostController
         return view('vendor.post.home.indexVideos', compact('videos', 'title'));
     }
 
-    public function userShow($slug)
+    public function userShow($video)
     {
-        $video  = Post::where('slug', $slug)->firstOrFail();
+        if( !$video instanceof Post ){
+            $video = Post::whereSlug($video)->firstOrFail();
+        }
         if( $video->publish_status != 'published' && (Auth::guest() || !Auth::user()->is_admin) ){
             abort(404);
         }
 
-        Post::query()->where('slug', $slug)->update([
-            'hits'  => $video->hits + 1
-        ]);
-
         $video->hits = $video->hits + 1;
-
+        $video->save();
 
         $videos = Post::where('post_type', $this->postType)->latest()->limit(3)->get();
 

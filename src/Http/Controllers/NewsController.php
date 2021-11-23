@@ -28,17 +28,18 @@ class NewsController extends PostController
         return view('vendor.post.home.indexNews', compact('news', 'title'));
     }
 
-    public function userShow($slug)
+    public function userShow($news)
     {
-        $news = Post::where('slug', $slug)->firstOrFail();
+        if( !$news instanceof Post ){
+            $news = Post::whereSlug($news)->firstOrFail();
+        }
+
         if( ( Auth::guest() || !Auth::user()->is_admin ) && $news->publish_status != 'published' ){
             abort(404);
         }
 
-        Post::query()->where('slug', $slug)->update([
-            'hits'  => $news->hits + 1
-        ]);
         $news->hits = $news->hits + 1;
+        $news->save();
         $title = $news->title;
 
         return view('vendor.post.home.showNew', compact('news', 'title'));

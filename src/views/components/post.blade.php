@@ -188,13 +188,8 @@
     <div class="col-md-12">
         <div class="form-group">
             <label for="meta_description"><strong>توضیحات سئو</strong></label>
-<<<<<<< HEAD
             <textarea id="meta_description" name="meta_description" class="form-control">
                 {{ old('meta_description' , $post->meta_description) }}</textarea>
-=======
-            <textarea id="meta_description" name="meta_description"
-                class="form-control">{{old('meta_description', $post->meta_description)}}</textarea>
->>>>>>> 0d57e59d9702e2f723413ddb354cde39d192d679
         </div>
     </div>
 </div>
