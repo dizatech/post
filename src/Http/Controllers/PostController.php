@@ -90,6 +90,9 @@ class PostController extends Controller
     {
         $post->fill($request->all());
         $post->published_at = $request->publish_date;
+        if( config('dizatech_post.allow_slug_change') ){
+            $post->slug = $request->slug;
+        }
         $post->save();
 
         $post->syncMedia($request->featured_image, 'featured_image');
