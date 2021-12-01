@@ -16,10 +16,12 @@ class ArticleCategoryController extends PostCategoryController
         $this->post_type = 'article';
     }
 
-    public function userShow($slug)
+    public function userShow($category)
     {
-        $category = Category::where('category_type', $this->category_type)
-            ->where('slug', $slug)->firstOrFail();
+        if( !$category instanceof Category ){
+            $category = Category::where('category_type', $this->category_type)
+                ->where('slug', $category)->firstOrFail();
+        }
 
         $articles = Post::where('post_type', $this->post_type);
         if( Auth::guest() || !Auth::user()->is_admin ){

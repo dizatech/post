@@ -50,7 +50,11 @@
                                         @forelse($categories as $category)
                                                 <tr>
                                                     <td>{{$category->id}}</td>
-                                                    <td>{{$category->title}}</td>
+                                                    <td>
+                                                        <a href="{{ route('category.generic_show', $category->slug) }}" target="_blank">
+                                                            {{$category->title}}
+                                                        </a>
+                                                    </td>
                                                     <td>@if($category->parent)
                                                             {{ $category->parent->title }}
                                                         @else

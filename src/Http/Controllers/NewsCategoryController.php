@@ -16,12 +16,13 @@ class NewsCategoryController extends PostCategoryController
         $this->category_type = 'newsCategory';
     }
 
-    public function userShow($slug)
+    public function userShow($category)
     {
-        $category = Category::where('category_type', $this->category_type)
-            ->where('slug', $slug)->firstOrFail();
+        if( !$category instanceof Category ){
+            $category = Category::where('category_type', $this->category_type)
+                ->where('slug', $category)->firstOrFail();
+        }
 
-        \DB::enableQueryLog();
         $news = Post::where('post_type', $this->post_type);
         if( Auth::guest() || !Auth::user()->is_admin ){
             $news = $news->wherePublishStatus('published');
