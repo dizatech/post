@@ -25,7 +25,7 @@ class ArticleCategoryController extends PostCategoryController
 
         $articles = Post::where('post_type', $this->post_type);
         if( Auth::guest() || !Auth::user()->is_admin ){
-            $articles = $articles->wherePostStatus('published');
+            $articles = $articles->wherePublishStatus('published');
         };
 
         $articles = $articles->whereHas('categories', function( $query ) use ( $category ){
