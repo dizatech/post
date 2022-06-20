@@ -30,7 +30,7 @@ class ArticleCategoryController extends PostCategoryController
 
         $articles = $articles->whereHas('categories', function( $query ) use ( $category ){
             $query->where('category_id', $category->id);
-        })->latest()->paginate();
+        })->orderBy('published_at', 'desc')->paginate();
 
         $title = $category->title;
 

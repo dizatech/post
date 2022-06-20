@@ -22,7 +22,7 @@ class NewsController extends PostController
             $news = $news->wherePublishStatus('published');
         }
 
-        $news = $news->latest()->paginate(16);
+        $news = $news->orderBy('published_at', 'desc')->paginate(16);
         $title = "اخبار";
 
         return view('vendor.post.home.indexNews', compact('news', 'title'));

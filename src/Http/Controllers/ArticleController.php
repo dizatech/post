@@ -19,7 +19,7 @@ class ArticleController extends PostController
         if( Auth::guest() || !Auth::user()->is_admin ){
             $articles = $articles->wherePublishStatus('published');
         }
-        $articles = $articles->latest()->paginate(16);
+        $articles = $articles->orderBy('published_at', 'desc')->paginate(16);
         $title = "مقالات مفید";
 
         return view('vendor.post.home.indexArticles' , compact('articles', 'title'));

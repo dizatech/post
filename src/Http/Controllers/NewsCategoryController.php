@@ -29,7 +29,7 @@ class NewsCategoryController extends PostCategoryController
         };
         $news = $news->whereHas('categories', function( $query ) use ( $category ){
             $query->where('category_id', $category->id);
-        })->latest()->paginate();
+        })->orderBy('published_at', 'desc')->paginate();
 
         $title = $category->title;
 

@@ -19,7 +19,7 @@ class VideoController extends PostController
         if( Auth::guest() || !Auth::user()->is_admin ){
             $videos = $videos->wherePublishStatus('published');
         }
-        $videos = $videos->latest()->paginate(12);
+        $videos = $videos->orderBy('published_at', 'desc')->paginate(12);
         $title = 'ویدیو';
 
         return view('vendor.post.home.indexVideos', compact('videos', 'title'));
@@ -37,7 +37,7 @@ class VideoController extends PostController
         $video->hits = $video->hits + 1;
         $video->save();
 
-        $videos = Post::where('post_type', $this->postType)->latest()->limit(3)->get();
+        $videos = Post::where('post_type', $this->postType)->orderBy('published_at', 'desc')->limit(3)->get();
 
         return view('vendor.post.home.showVideo', compact('video', 'videos'));
     }
