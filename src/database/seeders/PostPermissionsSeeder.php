@@ -89,6 +89,14 @@ class PostPermissionsSeeder extends Seeder
                 'updated_at' => now()->toDateTimeString()
             ]);
         }
-
+        if (DB::table('permissions')->where('name','change_slugs')->count() == 0){
+            DB::table('permissions')->insert([
+                'name' => 'change_slugs',
+                'display_name' => 'تغییر آدرس',
+                'description' => 'تغییر آدرس',
+                'created_at' => now()->toDateTimeString(),
+                'updated_at' => now()->toDateTimeString()
+            ]);
+        }
     }
 }

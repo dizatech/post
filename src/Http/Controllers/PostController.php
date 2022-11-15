@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Modules\Post\Facades\PostFacade;
 use Modules\Post\Http\Requests\PostRequest;
 use Modules\Post\Models\Post;
+use Modules\Post\Services\Helpers;
 use Plank\Mediable\Media;
 
 class PostController extends Controller
@@ -90,7 +91,7 @@ class PostController extends Controller
     {
         $post->fill($request->all());
         $post->published_at = $request->publish_date;
-        if( config('dizatech_post.allow_slug_change') ){
+        if( Helpers::canEditSlug() ){
             $post->slug = $request->slug;
         }
         $post->save();

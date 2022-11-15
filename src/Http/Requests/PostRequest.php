@@ -37,7 +37,7 @@ class PostRequest extends FormRequest
     public function prepareForValidation()
     {
         $this->merge([
-            'slug' => ValidationCommonHelperFacade::prepareSlug(request()->slug, request()->title, Post::class)
+            'slug' => ValidationCommonHelperFacade::prepareSlug(request()->slug, request()->title, Post::class, $this->route()->post)
         ]);
     }
 }

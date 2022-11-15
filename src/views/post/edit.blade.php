@@ -29,8 +29,7 @@
                                         'categories' => $categories,
                                         'post'       => $post,
                                         'users'      => $users,
-]                                               )
-                                    @endcomponent
+                                    ])@endcomponent
                                 @endslot
                             @endcomponent
                         </form>
