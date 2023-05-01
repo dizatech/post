@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Modules\Post\Facades\PostFacade;
 use Modules\Post\Http\Requests\PostRequest;
 use Modules\Post\Models\Post;
@@ -16,12 +17,18 @@ class PostController extends Controller
 {
     protected $postType;
 
-    public function index(Post $post)
+    public function index(Request $request, Post $post)
     {
         $post->post_type = $this->postType;
 
-        return view("vendor.post.panel.index",[
-            'posts'       => PostFacade::all($this->postType),
+        if ($request->has('title') && $request->title != '') {
+            $posts = PostFacade::search($this->postType, $request->title);
+        } else {
+            $posts = PostFacade::all($this->postType);
+        }
+
+        return view("vendor.post.panel.index", [
+            'posts'       => $posts,
             'postType'    => $this->postType,
             'post'        => $post
         ]);
@@ -30,7 +37,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::query()->where('parent_id', 0)
-            ->where('category_type', $this->postType.'Category')
+            ->where('category_type', $this->postType . 'Category')
             ->get();
         $users = User::query()->get();
         $post  = new Post();
@@ -53,7 +60,7 @@ class PostController extends Controller
         $post->save();
 
         $post->syncMedia($request->featured_image, 'featured_image');
-        if($request->has('featured_image')) {
+        if ($request->has('featured_image')) {
             foreach ($request->featured_image as $index => $feature) {
                 Media::query()->whereId($feature)->update([
                     'caption' => $request->featured_image_caption[$index] ?? null
@@ -64,14 +71,14 @@ class PostController extends Controller
 
         $post->categories()->sync($request->categories);
 
-        session()->flash('success', ' ثبت '.$post->postTypeLabel.' با موفقیت انجام شد.');
-        return redirect()->route($this->postType.'.edit', $post);
+        session()->flash('success', ' ثبت ' . $post->postTypeLabel . ' با موفقیت انجام شد.');
+        return redirect()->route($this->postType . '.edit', $post);
     }
 
     public function edit(Post $post, Category $category)
     {
         $categories = $category->query()->where('parent_id', 0)
-            ->where('category_type', $this->postType.'Category')
+            ->where('category_type', $this->postType . 'Category')
             ->get();
         $users = User::query()->get();
 
@@ -79,7 +86,7 @@ class PostController extends Controller
         $post->featured_image = $post->getMedia('featured_image')->pluck('id');
         $post->video = $post->getMedia('video')->pluck('id');
 
-        return view("vendor.post.panel.edit",[
+        return view("vendor.post.panel.edit", [
             'post'          => $post,
             'categories'    => $categories,
             'postType'      => $this->postType,
@@ -91,13 +98,13 @@ class PostController extends Controller
     {
         $post->fill($request->all());
         $post->published_at = $request->publish_date;
-        if( Helpers::canEditSlug() ){
+        if (Helpers::canEditSlug()) {
             $post->slug = $request->slug;
         }
         $post->save();
 
         $post->syncMedia($request->featured_image, 'featured_image');
-        if($request->has('featured_image')) {
+        if ($request->has('featured_image')) {
             foreach ($request->featured_image as $index => $feature) {
                 Media::query()->whereId($feature)->update([
                     'caption' => $request->featured_image_caption[$index] ?? null
@@ -105,7 +112,7 @@ class PostController extends Controller
             }
         }
         $post->syncMedia($request->video, 'video');
-        if($request->has('video')) {
+        if ($request->has('video')) {
             foreach ($request->video as $index => $video) {
                 Media::query()->whereId($video)->update([
                     'caption' => $request->video_caption[$index] ?? null
@@ -115,7 +122,7 @@ class PostController extends Controller
 
         $post->categories()->sync($request->categories);
 
-        session()->flash('success',$post->postTypeLabel .' با موفقیت ویرایش شد.');
+        session()->flash('success', $post->postTypeLabel . ' با موفقیت ویرایش شد.');
         return redirect()->back();
     }
 
@@ -129,12 +136,11 @@ class PostController extends Controller
 
     public function PostDeleteAjax(Post $post)
     {
-        if( $post->post_type == 'page' ){
+        if ($post->post_type == 'page') {
             return abort(403);
         }
 
         $post->delete();
         return response()->json(['status' =>  200]);
     }
-
 }

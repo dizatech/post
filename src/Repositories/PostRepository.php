@@ -12,6 +12,14 @@ class PostRepository
         return Post::query()->where('post_type', $postType)->paginate(16);
     }
 
+
+    public function search($postType ,$title)
+    {
+        return Post::query()->where('post_type', $postType)
+        ->where('title','like',"%{$title}%")->paginate(16);
+    }
+
+
     public function getFromCategory($postType, $category_id, $count=NULL)
     {
         $query = Post::where('post_type', $postType)
