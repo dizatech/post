@@ -50,6 +50,7 @@ if( config('dizatech_post.manage_home_routes') ){
         Route::get(config('dizatech_post.article_base_url') . '/{slug}', 'ArticleController@userShow')->name('generic_show');
         Route::get(config('dizatech_post.video_base_url') . '/{slug}', 'VideoController@userShow')->name('video.user_show');
         Route::get(config('dizatech_post.page_base_url') . '/{slug}', 'PageController@userShow')->name('page.user_show');
+        Route::get(config('dizatech_post.video_category_base_url'). '/{slug}','VideoController@videoCategory')->name('video.category');
 
         //post type catgories
         Route::get('اخبار/دسته-بندی/' . '{slug}', 'NewsCategoryController@userShow')->name('news_category.user_show');
